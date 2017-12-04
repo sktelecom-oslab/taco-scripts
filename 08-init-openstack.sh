@@ -34,9 +34,9 @@ echo "Done"
 echo "Create router..."
 ADMIN_ROUTER_TEMP=$(openstack router list | grep admin-router | awk '{print $4}')
 if [ "x${ADMIN_ROUTER_TEMP}" != "xadmin-router" ]; then
-    openstack router create --ha admin-router
+    openstack router create admin-router
     openstack router add subnet admin-router private-subnet
-    openstack router set --ha --external-gateway public-net admin-router
+    openstack router set --external-gateway public-net admin-router
     openstack router show admin-router
 fi
 echo "Done"
