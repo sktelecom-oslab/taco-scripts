@@ -24,3 +24,9 @@ kubectl create clusterrolebinding openstack \
 kubectl create clusterrolebinding ceph \
 --clusterrole=cluster-admin \
 --serviceaccount=ceph:default
+
+echo """nameserver 10.96.0.10
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+search openstack.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5""" > /etc/resolv.conf
