@@ -2,7 +2,7 @@
 set -ex
 apt-get update
 apt-get -y upgrade
-apt install -y python python-pip git jq nmap bridge-utils
+apt install -y python python-pip git jq nmap bridge-utils ipcalc
 pip install --upgrade pip
 pip install -U ansible
 pip install netaddr
