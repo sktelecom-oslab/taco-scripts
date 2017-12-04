@@ -7,7 +7,8 @@ pip install --upgrade pip
 pip install -U ansible
 pip install netaddr
 pip install pyOpenSSL==16.2.0
+apt install -y sudo ceph-common
 
 swapoff -a
-
+modprobe rbd
 export LC_ALL="en_US.UTF-8"
