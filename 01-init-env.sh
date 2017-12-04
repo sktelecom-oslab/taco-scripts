@@ -10,7 +10,8 @@ pip install --upgrade pip
 pip install -U ansible
 pip install netaddr
 pip install pyOpenSSL==16.2.0
-pip install python-openstackclient==3.8.1
+pip install python-openstackclient
 
 swapoff -a
 modprobe rbd
+ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
