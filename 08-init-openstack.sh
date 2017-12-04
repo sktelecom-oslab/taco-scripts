@@ -70,7 +70,7 @@ echo "Done"
 echo "Add public ip to vm..."
 #openstack floating ip create public-net
 openstack floating ip create public-net
-FLOATING_IP=$(openstack floating ip list | grep -v $EXIP_PRE.200 |  grep 192 | awk '{print $4}')
+FLOATING_IP=$(openstack floating ip list | grep 192 | awk '{print $4}')
 SERVER=$(openstack server list | grep test | awk '{print $2}')
 
 sleep 10
