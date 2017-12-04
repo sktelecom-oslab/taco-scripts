@@ -10,8 +10,8 @@ if [ -d $HELM_DIR ]; then
   rm -rf $HELM_DIR
 fi
 git clone https://github.com/openstack/openstack-helm.git
+cd ~/openstack-helm
 git checkout cae76dc9ab94f48259a8514075efb76f088a2722
-cd openstack-helm
 make
 cd ~/
 VALUES_DIR=~/taco-values
