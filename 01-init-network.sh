@@ -1,4 +1,5 @@
 #!/bin/bash
+set -ex
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
