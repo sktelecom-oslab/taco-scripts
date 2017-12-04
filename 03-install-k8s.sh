@@ -1,8 +1,8 @@
 #!/bin/bash
 set -ex
 cd ~/
-KUBESPRAY_DIR="~/taco-kubespray"
-if [ -d "$KUBESPRAY_DIR" ]; then
+KUBESPRAY_DIR=~/taco-kubespray
+if [ -d $KUBESPRAY_DIR ]; then
   rm -rf $KUBESPRAY_DIR
 fi
 git clone https://github.com/sktelecom-oslab/taco-kubespray.git
