@@ -8,3 +8,5 @@ cd ~/
 git clone https://github.com/openstack/openstack-helm.git
 cd openstack-helm
 make
+cd ~/
+git clone https://github.com/sktelecom-oslab/taco-values.git
