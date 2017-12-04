@@ -64,7 +64,7 @@ FLAVOR=$(openstack flavor list | grep m1.tiny | awk '{print $2}')
 NETWORK=$(openstack network list | grep private-net | awk '{print $2}')
 
 echo "Create virtual machine..."
-openstack server create --image $IMAGE --flavor $FLAVOR --nic net-id=$NETWORK --security-group=default --key-name taco-key test --wait
+openstack server create --image $IMAGE --flavor $FLAVOR --nic net-id=$NETWORK --key-name taco-key test --wait
 echo "Done"
 
 echo "Add public ip to vm..."
