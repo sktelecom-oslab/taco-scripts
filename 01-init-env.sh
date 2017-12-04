@@ -10,7 +10,7 @@ pip install --upgrade pip
 pip install -U ansible
 pip install netaddr
 pip install pyOpenSSL==16.2.0
-pip install python-openstackclient
+pip install python-openstackclient==3.12.0
 
 swapoff -a
 modprobe rbd
