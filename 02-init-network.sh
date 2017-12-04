@@ -15,3 +15,9 @@ ip addr add $EXIP/24 dev br-data
 route add default gw $EXGW
 
 echo $EXIP 'taco-aio' >> /etc/hosts
+
+echo """nameserver 10.96.0.10
+search openstack.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5
+nameserver 8.8.8.8
+nameserver 8.8.4.4""" > /etc/resolv.conf 
