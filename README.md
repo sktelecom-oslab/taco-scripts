@@ -6,7 +6,7 @@ This set of scripts let anyone install TACO AIO (All-In-One) on a single machine
 * kubernetes 
 * ceph 
 * openstack
-* weave sccope 
+* weave scope 
 
 Hardware (VM) Requirements 
 * Spec: 4 CPU / 16G MEMORY / 100G DISK / 1 NIC
