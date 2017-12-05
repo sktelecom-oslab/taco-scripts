@@ -26,3 +26,9 @@ TACO v2.0 Release Document
 
 https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
 * please contact Jaesuk Ahn (jay.ahn@sk.com) to get access to the release document.
+
+
+Acknowledgement 
+---------------
+This is fully inspired by OpenStack-Helm project workshop at OpenStack Sydney Summit.
+* https://github.com/portdirect/sydney-workshop
