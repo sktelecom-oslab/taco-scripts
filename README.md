@@ -6,7 +6,7 @@ This set of scripts let anyone install TACO AIO (All-In-One) on a single machine
 * kubernetes 
 * ceph 
 * openstack
-* weave sccope 
+* weave scope 
 
 TACO (SKT All Container OpenStack) 
 ----------------------------------
