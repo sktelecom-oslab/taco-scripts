@@ -1,4 +1,5 @@
 #!/bin/bash
+(( EUID )) && echo You need to be root. && exit 1
 set -ex
 
 export LC_ALL="en_US.UTF-8"

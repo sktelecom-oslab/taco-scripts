@@ -1,4 +1,5 @@
 #!/bin/bash
+(( EUID )) && echo You need to be root. && exit 1
 set -ex
 helm install -f ~/taco-values/single/keystone.yaml ~/openstack-helm/keystone/ --namespace openstack --name keystone
 helm install -f ~/taco-values/single/glance.yaml ~/openstack-helm/glance/ --namespace openstack --name glance
