@@ -23,11 +23,13 @@ echo "Create public network..."
 PUBLIC_NAME_TEMP=$(openstack network list | grep public-net | awk '{print $4}')
 if [ "x${PUBLIC_NAME_TEMP}" != "xpublic-net" ]; then
     openstack network create --external --share --provider-network-type flat --provider-physical-network external public-net
-    openstack subnet create --network public-net --subnet-range 10.0.0.0/24 --no-dhcp --gateway 10.0.0.1 \
+    openstack subnet create --network public-net --subnet-range 10.123.123.0/24 --no-dhcp --gateway 10.123.123.1 \
         --ip-version 4 public-subnet
 fi
-sudo ip addr add 10.0.0.1/24 dev br-data
-sudo iptables -t nat -A POSTROUTING -o br-data -j MASQUERADE
+ip addr add 10.123.123.1/24 dev br-ex
+ip link set br-ex up
+EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
+iptables -t nat -A POSTROUTING -o $EXNIC -j MASQUERADE
 echo "Done"
 
 echo "Create router..."

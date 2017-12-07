@@ -4,6 +4,9 @@ set -ex
 
 export LC_ALL="en_US.UTF-8"
 
+EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
+echo $EXIP 'taco-aio' >> /etc/hosts
+
 apt-get update
 apt-get -y upgrade
 
