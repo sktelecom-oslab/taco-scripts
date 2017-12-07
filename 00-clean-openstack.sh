@@ -55,8 +55,10 @@ echo "Done"
 
 echo "Deleting public network..."
 openstack network delete public-net
-sudo ip addr delete 10.0.0.1/24 dev br-data
-sudo iptables -t nat -D POSTROUTING -o br-data -j MASQUERADE
+ip addr delete 10.123.123.1/24 dev br-ex
+ip link set br-ex down
+EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
+iptables -t nat -D POSTROUTING -o $EXNIC -j MASQUERADE
 echo "Done"
 
 echo "Deleting private network..."
