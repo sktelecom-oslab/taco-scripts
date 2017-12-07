@@ -54,7 +54,6 @@ openstack router delete admin-router
 echo "Done"
 
 echo "Deleting public network..."
-openstack subnet delete public-subnet
 openstack network delete public-net
 sudo ip addr delete 10.0.0.1/24 dev br-data
 sudo iptables -t nat -D POSTROUTING -o br-data -j MASQUERADE
