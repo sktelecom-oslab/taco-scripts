@@ -1,4 +1,8 @@
 #!/bin/bash
+dmesg | grep -q "BIOS Google"
+case $? in
+(0) echo Sorry. GCE instance needs 2 nics to deploy TACO 2.0; exit;;
+esac
 set -ex
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
