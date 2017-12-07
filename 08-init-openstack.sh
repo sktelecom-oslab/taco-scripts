@@ -10,11 +10,6 @@ export OS_AUTH_URL=http://keystone-api.openstack.svc.cluster.local:35357/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 
-EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
-EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
-CIDR=$(ipcalc -n $EXIP $EXGW | awk /'Network:'/'{print $2}')
-EXIP_PRE=${EXIP%.*}
-
 echo "Create private network..."
 PRIVATE_NAME_TEMP=$(openstack network list | grep private-net | awk '{print $4}')
 if [ "x${PRIVATE_NAME_TEMP}" != "xprivate-net" ]; then
@@ -27,10 +22,13 @@ echo "Create public network..."
 PUBLIC_NAME_TEMP=$(openstack network list | grep public-net | awk '{print $4}')
 if [ "x${PUBLIC_NAME_TEMP}" != "xpublic-net" ]; then
     openstack network create --external --share --provider-network-type flat --provider-physical-network external public-net
-    openstack subnet create --network public-net --subnet-range $CIDR --no-dhcp --gateway $EXGW \
-        --ip-version 4 --allocation-pool start=$EXIP_PRE.200,end=$EXIP_PRE.210 public-subnet
+    openstack subnet create --network public-net --subnet-range 10.0.0.0/24 --no-dhcp --gateway 10.0.0.1 \
+        --ip-version 4 public-subnet
 fi
+sudo ip addr add 10.0.0.1/24 dev br-data
+sudo iptables -t nat -A POSTROUTING -o br-data -j MASQUERADE
 echo "Done"
+
 echo "Create router..."
 ADMIN_ROUTER_TEMP=$(openstack router list | grep admin-router | awk '{print $4}')
 if [ "x${ADMIN_ROUTER_TEMP}" != "xadmin-router" ]; then
@@ -58,7 +56,6 @@ echo "Create private key"
     openstack keypair create --public-key ~/.ssh/id_rsa.pub taco-key
 echo "Done"
 
-
 IMAGE=$(openstack image show 'Cirros 0.3.5 64-bit' | grep id | awk '{print $4}')
 FLAVOR=$(openstack flavor list | grep m1.tiny | awk '{print $2}')
 NETWORK=$(openstack network list | grep private-net | awk '{print $2}')
@@ -68,9 +65,8 @@ openstack server create --image $IMAGE --flavor $FLAVOR --nic net-id=$NETWORK --
 echo "Done"
 
 echo "Add public ip to vm..."
-#openstack floating ip create public-net
 openstack floating ip create public-net
-FLOATING_IP=$(openstack floating ip list | grep 192 | awk '{print $4}')
+FLOATING_IP=$(openstack floating ip list | grep 10 | awk '{print $4}')
 SERVER=$(openstack server list | grep test | awk '{print $2}')
 
 sleep 10
@@ -78,4 +74,3 @@ sleep 10
 openstack server add floating ip $SERVER $FLOATING_IP
 openstack server list
 echo "Done"
-
