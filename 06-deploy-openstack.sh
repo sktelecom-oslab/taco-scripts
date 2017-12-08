@@ -11,3 +11,4 @@ helm install -f ~/taco-values/single/openvswitch.yaml ~/openstack-helm/openvswit
 helm install -f ~/taco-values/single/neutron.yaml ~/openstack-helm/neutron/ --namespace openstack --name neutron --set network.interface.tunnel=$EXNIC
 helm install -f ~/taco-values/single/cinder.yaml ~/openstack-helm/cinder/ --namespace openstack --name cinder
 helm install -f ~/taco-values/single/horizon.yaml ~/openstack-helm/horizon/ --namespace openstack --name horizon
+helm install -f ~/taco-values/single/heat.yaml ~/openstack-helm/heat/ --namespace openstack --name heat
