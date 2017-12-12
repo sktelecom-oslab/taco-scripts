@@ -1,17 +1,18 @@
-<img src="https://github.com/kubernetes/kubernetes/raw/master/logo/logo.png" width="100">
+<img src="https://github.com/sktelecom-oslab/docs/blob/master/images/taco-logo.png" width="100">
 
 # TACO Installation Scripts
 
 This set of scripts let anyone install TACO AIO (All-In-One) on a single machine.
 
-* kubernetes 
-* ceph 
-* openstack ocata version
-* weave scope 
-* prometheus 
-* grafana
+* Kubernetes v1.8.1
+* Helm v2.6.1
+* OpenStack Ocata release
+* Ceph Jewel Version 
+* Weave Scope
+* Prometheus 
+* Grafana
 
-Hardware (VM) Requirements 
+Minimum Hardware (VM) Requirements 
 * Spec: 4 CPU / 16G MEMORY / 100G DISK / 1 NIC
 * OS: Ubuntu 16.04.3  
 
