@@ -22,12 +22,12 @@ Minimum Hardware (VM) Requirements
 TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-Helm] project.
 * 100% Community based Open Source SW with Continuous Integration / Delivery System
 * Enhanced OpenStack Lifecycle Management: Self-Healing, Upgrade w/o Service Interruption, Simple and Easy Deployment, Highly Flexible Customization 
-* Version Info: TACO v1.x = Newton / TACO v2.x = Ocata  
+* TACO Version Info: TACO v1.x = Newton / TACO v2.x = Ocata  
 
 ## TACO v2.0 Release Document 
 
 https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
-* please contact Jaesuk Ahn (jay.ahn@sk.com) to get access to the release document.
+* please contact Jaesuk Ahn (jay.ahn@sk.com) to get an access to the release document.
 
 ----
 
