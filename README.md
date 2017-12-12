@@ -1,4 +1,4 @@
-<img src="https://github.com/sktelecom-oslab/docs/blob/master/images/taco-logo.png" width="100">
+<img src="https://github.com/sktelecom-oslab/docs/blob/master/images/taco-logo.png" width="300">
 
 # TACO Installation Scripts
 
