@@ -5,11 +5,11 @@ set -ex
 helm serve . &
 sleep 3
 helm repo add localhost http://localhost:8879/charts
-cd ~/
-HELM_DIR=~/openstack-helm
+HELM_DIR=~/apps/openstack-helm
 if [ -d $HELM_DIR ]; then
   rm -rf $HELM_DIR
 fi
+cd ~/apps
 git clone https://github.com/sktelecom-oslab/openstack-helm.git
 cd ~/openstack-helm
 git checkout -b 2.0.0 2.0.0

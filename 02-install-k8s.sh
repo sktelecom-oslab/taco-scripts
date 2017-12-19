@@ -16,16 +16,16 @@ if [ -d $KUBESPRAY_DIR ]; then
   rm -rf $KUBESPRAY_DIR
 fi
 cd ~/apps
-git clone https://github.com/kubernetes-incubator/kubespray.git upstream_kubespray && cd upstream_kubespray
+git clone https://github.com/kubernetes-incubator/kubespray.git upstream-kubespray && cd upstream-kubespray
 git checkout -b v2.3.0 tags/v2.3.0
-pip3 install -r requirements.txt
+pip install -r requirements.txt
 
 cd ~/apps
 git clone https://github.com/sktelecom-oslab/taco-kubespray.git && cd taco-kubespray
 git checkout -b v2.3.0 tags/v2.3.0
 
 cd ~/apps
-cp -R upstream_kubespray kubespray && cp -R taco-kubespray/* kubespray/. && cd kubespray
+cp -R upstream-kubespray kubespray && cp -R taco-kubespray/* kubespray/. && cd kubespray
 echo """taco-aio ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases 
 [kube-master]
 taco-aio
