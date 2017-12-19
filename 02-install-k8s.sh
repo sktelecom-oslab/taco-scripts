@@ -2,12 +2,42 @@
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
 cd ~/
-KUBESPRAY_DIR=~/taco-kubespray
+mkdir -p ~/apps
+TACO_KUBESPRAY_DIR=~/apps/taco-kubespray
+if [ -d $TACO_KUBESPRAY_DIR ]; then
+  rm -rf $TACO_KUBESPRAY_DIR
+fi
+UPSTREAM_KUBESPRAY_DIR=~/apps/upstream-kubespray
+if [ -d $UPSTREAM_KUBESPRAY_DIR ]; then
+  rm -rf $UPSTREAM_KUBESPRAY_DIR
+fi
+KUBESPRAY_DIR=~/apps/kubespray
 if [ -d $KUBESPRAY_DIR ]; then
   rm -rf $KUBESPRAY_DIR
 fi
-git clone https://github.com/sktelecom-oslab/taco-kubespray.git
-ansible-playbook -u root -b -i ~/taco-kubespray/inventory/taco-aio.cfg ~/taco-kubespray/cluster.yml
+cd ~/apps
+git clone https://github.com/kubernetes-incubator/kubespray.git upstream_kubespray && cd upstream_kubespray
+git checkout -b v2.3.0 tags/v2.3.0
+pip3 install -r requirements.txt
+
+cd ~/apps
+git clone https://github.com/sktelecom-oslab/taco-kubespray.git && cd taco-kubespray
+git checkout -b v2.3.0 tags/v2.3.0
+
+cd ~/apps
+cp -R upstream_kubespray kubespray && cp -R taco-kubespray/* kubespray/. && cd kubespray
+echo """taco-aio ansible_connection=local local_release_dir={{ansible_env.HOME}}/releases 
+[kube-master]
+taco-aio
+[etcd]
+taco-aio
+[kube-node]
+taco-aio
+[k8s-cluster:children]
+kube-node
+kube-master""" > inventory/taco-aio.cfg
+
+ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/kubespray/cluster.yml
 
 kubectl label nodes openstack-control-plane=enabled --all --namespace=openstack --overwrite
 kubectl label nodes openvswitch=enabled --all --namespace=openstack --overwrite
