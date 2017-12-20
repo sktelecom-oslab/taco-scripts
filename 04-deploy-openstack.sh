@@ -16,6 +16,6 @@ cd ~/apps
 git clone https://github.com/sktelecom-oslab/armada-manifests.git
 
 armada apply ~/apps/armada-manifests/taco-aio-manifest.yaml \
-	--set chart:ceph:values:network:public=$CIDR \
-	--set chart:ceph:values:network:cluster=$CIDR \
-	--set chart:neutron:values:network:interface:tunnel=$EXNIC
+	--set chart:ceph:values.network.public=$CIDR \
+	--set chart:ceph:values.network.cluster=$CIDR \
+	--set chart:neutron:values.network.interface.tunnel=$EXNIC
