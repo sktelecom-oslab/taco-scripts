@@ -33,13 +33,16 @@ https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
 ## Quick Start
 
 Download TACO Installation Scripts
+
     $ git clone https://github.com/sktelecom-oslab/taco-scripts.git
     $ cd taco-scripts
 
 Before install TACO AIO, initialize environment and install all related packages using:
+
     $ ./01-init-env.sh
 
 Deploy kubernetes cluster at your single machine:
+
     $ ./02-install-k8s.sh
 
 This step contains all about deploying kubernetes using kubespray
