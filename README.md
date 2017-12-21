@@ -51,20 +51,32 @@ This step contains all about deploying kubernetes using kubespray
 * label nodes for deploying OpenStack pods
 * make some necessary clusterrolebindings
 
-
+Install armada client to deploy OpenStack on kubernetes:
 
     $ ./03-init-armada.sh
 
+Deploy OpenStack:
 
     $ ./04-deploy-openstack.sh
 
 
+Make a vm deployed OpenStack cluster:
+
     $ ./05-init-openstack.sh
 
+First, populate environment variables with the location of the Identity service and the admin project and user credentials. This script also creates the necessary things to support launching instances and making them accessible.
+
+* Create private network
+* Create public network
+* Create router
+* Add security group for ssh
+* Create private key
+* Create virtual machine
+* Add public ip to vm
+
+Install monitoring elements:
 
     $ ./06-install-monitoring.sh
-
-
 
 
 ----
