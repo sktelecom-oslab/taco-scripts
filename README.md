@@ -30,6 +30,40 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
 https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
 * please contact Jaesuk Ahn (jay.ahn@sk.com) to get an access to the release document.
 
+## Quick Start
+
+Download TACO Installation Scripts
+    $ git clone https://github.com/sktelecom-oslab/taco-scripts.git
+    $ cd taco-scripts
+
+Before install TACO AIO, initialize environment and install all related packages using:
+    $ ./01-init-env.sh
+
+Deploy kubernetes cluster at your single machine:
+    $ ./02-install-k8s.sh
+
+This step contains all about deploying kubernetes using kubespray
+* download kubespray and setting TACO's configurations
+* deploy all-in-one kubernetes cluster
+* label nodes for deploying OpenStack pods
+* make some necessary clusterrolebindings
+
+
+
+    $ ./03-init-armada.sh
+
+
+    $ ./04-deploy-openstack.sh
+
+
+    $ ./05-init-openstack.sh
+
+
+    $ ./06-install-monitoring.sh
+
+
+
+
 ----
 
 ### Acknowledgement 
