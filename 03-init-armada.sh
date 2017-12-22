@@ -9,6 +9,12 @@ fi
 
 cd ~/apps
 git clone http://github.com/att-comdev/armada.git && cd armada
-apt-get install -y python3-pip
-pip3 install --upgrade pip
-pip3 install .
+OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
+if [ $OS_DISTRO == CentOS ]; then
+    yum install -y python36u-pip
+    pip3.6 install .
+elif [ $OS_DISTRO == Ubuntu ]; then
+    apt-get install -y python3-pip
+    pip3 install --upgrade pip
+    pip3 install .
+fi

@@ -4,9 +4,15 @@ set -ex
 
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
-CIDR=$(ipcalc -n $EXIP $EXGW | awk /'Network:'/'{print $2}')
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
 
+OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
+if [ $OS_DISTRO == CentOS ]; then
+    MASK=$(ifconfig $EXNIC | awk '/netmask /{ print $4;}')
+    CIDR=$(ipcalc -n $EXIP $MASK | cut -d'=' -f2)/$(ipcalc -p $EXIP $MASK | cut -d'=' -f2)
+elif [ $OS_DISTRO == Ubuntu ]; then
+    CIDR=$(ipcalc -n $EXIP $EXGW | awk /'Network:'/'{print $2}')
+fi
 ARMADA_MANIFEST_DIR=~/apps/armada-manifests
 if [ -d $ARMADA_MANIFEST_DIR ]; then
   rm -rf $ARMADA_MANIFEST_DIR
