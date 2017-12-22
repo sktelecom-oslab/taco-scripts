@@ -12,8 +12,6 @@ if [ $OS_DISTRO == CentOS ]; then
     yum update
     yum install -y yum-utils python-pip python-devel
     yum -y install ceph-common git jq nmap bridge-utils net-tools
-    yum -y install https://centos7.iuscommunity.org/ius-release.rpm
-    yum -y install python36u python36u-devel
 elif [ $OS_DISTRO == Ubuntu ]; then
     apt-get update
     apt-get -y upgrade
