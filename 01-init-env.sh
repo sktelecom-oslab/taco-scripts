@@ -9,7 +9,7 @@ echo $EXIP 'taco-aio' >> /etc/hosts
 
 OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
 if [ $OS_DISTRO == CentOS ]; then
-    yum update
+    yum update -y
     yum install -y yum-utils python-pip python-devel
     yum -y install ceph-common git jq nmap bridge-utils net-tools
 elif [ $OS_DISTRO == Ubuntu ]; then
