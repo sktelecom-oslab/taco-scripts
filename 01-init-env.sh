@@ -12,6 +12,7 @@ if [ $OS_DISTRO == CentOS ]; then
     yum update -y
     yum install -y epel-release
     yum install -y yum-utils python-pip python-devel
+    yum groupinstall -y 'development tools'
     yum -y install ceph-common git jq nmap bridge-utils net-tools
 elif [ $OS_DISTRO == Ubuntu ]; then
     apt-get update
