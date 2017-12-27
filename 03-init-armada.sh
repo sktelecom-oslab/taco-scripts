@@ -2,6 +2,8 @@
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
 
+export LC_ALL="en_US.UTF-8"
+
 ARMADA_DIR=~/apps/armada
 if [ -d $ARMADA_DIR ]; then
   rm -rf $ARMADA_DIR

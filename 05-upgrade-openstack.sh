@@ -13,15 +13,8 @@ if [ $OS_DISTRO == CentOS ]; then
 elif [ $OS_DISTRO == Ubuntu ]; then
     CIDR=$(ipcalc -n $EXIP $EXGW | awk /'Network:'/'{print $2}')
 fi
-ARMADA_MANIFEST_DIR=~/apps/armada-manifests
-if [ -d $ARMADA_MANIFEST_DIR ]; then
-  rm -rf $ARMADA_MANIFEST_DIR
-fi
 
-cd ~/apps
-git clone https://github.com/sktelecom-oslab/armada-manifests.git
-
-armada apply ~/apps/armada-manifests/taco-v1-aio-manifest.yaml \
+armada apply ~/apps/armada-manifests/taco-upgrade-v2-aio-manifest.yaml \
 	--set chart:ceph:values.network.public=$CIDR \
 	--set chart:ceph:values.network.cluster=$CIDR \
 	--set chart:neutron:values.network.interface.tunnel=$EXNIC
