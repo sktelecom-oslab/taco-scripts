@@ -33,9 +33,7 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
     $ git clone https://github.com/sktelecom-oslab/taco-scripts.git
     $ cd taco-scripts
 
-If you don't have *git* installed on your linux, please do the following  
-    > centos or rhel: sudo apt-get install git
-    > debian or ubuntu: sudo yum install git
+    > You need to have 'git' installed in your server.
 
 ### Before install TACO AIO, initialize environment and install all related packages using:
 
