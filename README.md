@@ -25,23 +25,24 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
 * Enhanced OpenStack Lifecycle Management: Self-Healing, Upgrade w/o Service Interruption, Simple and Easy Deployment, Highly Flexible Customization 
 * TACO Version Info: TACO v1.x = Newton / TACO v2.x = Ocata  
 
-## TACO v2.0 Release Document 
 
-https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
-* please contact Jaesuk Ahn (jay.ahn@sk.com) to get an access to the release document.
+## Quick Start Guide
 
-## Quick Start
-
-Download TACO Installation Scripts
+### Download TACO Installation Scripts
 
     $ git clone https://github.com/sktelecom-oslab/taco-scripts.git
     $ cd taco-scripts
 
-Before install TACO AIO, initialize environment and install all related packages using:
+If you don't have *git* installed on your linux, please do the following  
+    $ sudo apt-get install git
+or
+    $ sudo yum install git
+
+### Before install TACO AIO, initialize environment and install all related packages using:
 
     $ ./01-init-env.sh
 
-Deploy kubernetes cluster at your single machine:
+### Deploy kubernetes cluster at your single machine:
 
     $ ./02-install-k8s.sh
 
@@ -51,20 +52,21 @@ This step contains all about deploying kubernetes using kubespray
 * label nodes for deploying OpenStack pods
 * make some necessary clusterrolebindings
 
-Install armada client to deploy OpenStack on kubernetes:
+### Install [Armada] client to deploy OpenStack on Kubernetes:
 
     $ ./03-init-armada.sh
 
-Deploy OpenStack:
+> Armada is a tool for managing multiple helm charts with dependencies by centralizing all configurations in a single Armada yaml and providing lifecycle hooks for all helm releases.
+
+### Deploy OpenStack:
 
     $ ./04-deploy-openstack.sh
 
-
-Make a vm deployed OpenStack cluster:
+### Initialize OpenStack and Launch an instance (Virtual Machine)
 
     $ ./05-init-openstack.sh
 
-First, populate environment variables with the location of the Identity service and the admin project and user credentials. This script also creates the necessary things to support launching instances and making them accessible.
+First, populate environment variables with the location of the Identity service and the admin project and user credentials. This script also creates all the necessary resources to launch an instances and access it. 
 
 * Create private network
 * Create public network
@@ -74,12 +76,13 @@ First, populate environment variables with the location of the Identity service 
 * Create virtual machine
 * Add public ip to vm
 
-Install monitoring elements:
-
-    $ ./06-install-monitoring.sh
-
 
 ----
+
+## TACO v2.0 Release Document 
+
+https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
+* please contact Jaesuk Ahn (jay.ahn@sk.com) to get an access to the release document.
 
 ### Acknowledgement 
 
@@ -89,3 +92,4 @@ This is fully inspired by OpenStack-Helm project workshop at [OpenStack Sydney W
 [OpenStack-Helm]: https://github.com/openstack/openstack-helm
 [OpenStack-Helm Document]: https://docs.openstack.org/openstack-helm/latest/readme.html
 [OpenStack Sydney Workshop]: https://github.com/portdirect/sydney-workshop
+[Armada]: http://armada-helm.readthedocs.io/en/latest/readme.html#
