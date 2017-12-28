@@ -75,8 +75,9 @@ First, populate environment variables with the location of the Identity service 
 
 
 ----
+## Appendix 
 
-## TACO v2.0 Release Document 
+### TACO v2.0 Release Document 
 
 https://tde.sktelecom.com/wiki/pages/viewpage.action?pageId=146290186&
 * please contact Jaesuk Ahn (jay.ahn@sk.com) to get an access to the release document.
