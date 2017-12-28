@@ -15,7 +15,7 @@ This set of scripts let anyone install TACO AIO (All-In-One) on a single machine
 
 Minimum Hardware (VM) Requirements 
 * Spec: 4 CPU / 16G MEMORY / 100G DISK / 1 NIC
-* OS: Ubuntu 16.04.3  
+* OS: Ubuntu 16.04.3 or CentOS 7.4 or REHL 7.4   
 
 
 ## TACO (SKT All Container OpenStack) 
@@ -34,9 +34,8 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
     $ cd taco-scripts
 
 If you don't have *git* installed on your linux, please do the following  
-    $ sudo apt-get install git
-or
-    $ sudo yum install git
+    > centos or rhel: sudo apt-get install git
+    > debian or ubuntu: sudo yum install git
 
 ### Before install TACO AIO, initialize environment and install all related packages using:
 
