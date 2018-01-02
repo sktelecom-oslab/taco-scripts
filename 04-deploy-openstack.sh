@@ -2,6 +2,8 @@
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
 
+export LC_ALL="en_US.UTF-8"
+
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
