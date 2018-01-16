@@ -47,6 +47,7 @@ kubectl label nodes ceph-mds=enabled --all --overwrite
 kubectl label nodes ceph-mon=enabled --all --overwrite
 kubectl label nodes ceph-osd=enabled --all --overwrite
 kubectl label nodes ceph-rgw=enabled --all --overwrite
+kubectl label nodes ceph-mgr=enabled --all --overwrite
 
 kubectl create clusterrolebinding openstack \
 --clusterrole=cluster-admin \
