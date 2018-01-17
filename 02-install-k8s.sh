@@ -1,6 +1,7 @@
 #!/bin/bash
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
+export PATH=$PATH:/usr/local/bin
 cd ~/
 mkdir -p ~/apps
 TACO_KUBESPRAY_DIR=~/apps/taco-kubespray
