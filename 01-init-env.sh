@@ -31,7 +31,7 @@ else
 fi
 pip install --upgrade pip
 pip install 'pyOpenSSL==16.2.0'
-pip install 'python-openstackclient==3.12.0'
+pip install 'python-openstackclient'
 
 swapoff -a
 modprobe rbd
