@@ -16,6 +16,10 @@ KUBESPRAY_DIR=~/apps/kubespray
 if [ -d $KUBESPRAY_DIR ]; then
   rm -rf $KUBESPRAY_DIR
 fi
+DUMMY_FILE=/tmp/taco-aio
+if [ -f $DUMMY_FILE ]; then
+  rm -rf $DUMMY_FILE
+fi
 cd ~/apps
 git clone https://github.com/kubernetes-incubator/kubespray.git upstream-kubespray && cd upstream-kubespray
 git checkout -b v2.3.0 tags/v2.3.0
