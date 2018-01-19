@@ -11,6 +11,12 @@ export OS_AUTH_URL=http://keystone-api.openstack.svc.cluster.local:35357/v3
 export OS_IDENTITY_API_VERSION=3
 export OS_IMAGE_API_VERSION=2
 
+echo """nameserver 10.96.0.10
+nameserver 8.8.8.8
+nameserver 8.8.4.4
+search openstack.svc.cluster.local svc.cluster.local cluster.local
+options ndots:5""" > /etc/resolv.conf
+
 echo "Create private network..."
 PRIVATE_NAME_TEMP=$(openstack network list | grep private-net | awk '{print $4}')
 if [ "x${PRIVATE_NAME_TEMP}" != "xprivate-net" ]; then
