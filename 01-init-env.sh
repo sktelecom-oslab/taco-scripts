@@ -34,5 +34,6 @@ pip install 'pyOpenSSL==16.2.0'
 pip install 'python-openstackclient'
 
 swapoff -a
+sed -i '/swap/s/^/#/g' /etc/fstab
 modprobe rbd
 ssh-keygen -b 2048 -t rsa -f ~/.ssh/id_rsa -q -N ""
