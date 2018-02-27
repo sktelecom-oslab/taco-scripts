@@ -5,10 +5,9 @@ set -ex
 export LC_ALL="en_US.UTF-8"
 export PATH=$PATH:/usr/local/bin
 
-# 환경 변수 추가
+# To prevent locale error during the installation. Added locale settings.
 echo LANG=en_US.utf-8 >> /etc/environment
 echo LC_ALL=en_US.utf-8 >> /etc/environment
-
 echo export LANG=en_US.utf-8 >> ~/.bashrc
 echo export LC_ALL=en_US.utf-8 >> ~/.bashrc
 
