@@ -22,12 +22,19 @@ if [ $OS_DISTRO == Red ]; then
     yum install -y yum-utils python-pip python-devel
     yum groupinstall -y 'development tools'
     yum -y install ceph-common git jq nmap bridge-utils net-tools
+
+    setenforce 0
 elif [ $OS_DISTRO == CentOS ]; then
     yum update -y
     yum install -y epel-release
     yum install -y yum-utils python-pip python-devel
     yum groupinstall -y 'development tools'
     yum -y install ceph-common git jq nmap bridge-utils net-tools
+
+    setenforce 0
+    systemctl stop firewalld
+    # TODO Don't leave firewall disabled permanently, use only for TACO-AIO
+    systemctl disable firewalld
 elif [ $OS_DISTRO == Ubuntu ]; then
     apt-get update
     apt-get -y upgrade
