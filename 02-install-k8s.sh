@@ -22,12 +22,12 @@ if [ -f $CACHE_FILE ]; then
 fi
 cd ~/apps
 git clone https://github.com/kubernetes-incubator/kubespray.git upstream-kubespray && cd upstream-kubespray
-git checkout -b v2.3.0 tags/v2.3.0
+git checkout -b v2.4.0 tags/v2.4.0
 pip install -r requirements.txt
 
 cd ~/apps
 git clone https://github.com/sktelecom-oslab/taco-kubespray.git && cd taco-kubespray
-git checkout -b v2.3.0 tags/v2.3.0
+git checkout -b v2.4.0 tags/v2.4.0
 
 cd ~/apps
 cp -R upstream-kubespray kubespray && cp -R taco-kubespray/* kubespray/. && cd kubespray
@@ -43,6 +43,9 @@ kube-node
 kube-master""" > inventory/taco-aio.cfg
 
 ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/kubespray/cluster.yml
+
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+helm init --upgrade
 
 kubectl label nodes openstack-control-plane=enabled --all --namespace=openstack --overwrite
 kubectl label nodes openvswitch=enabled --all --namespace=openstack --overwrite
