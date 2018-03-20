@@ -44,6 +44,8 @@ kube-master""" > inventory/taco-aio.cfg
 
 ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/kubespray/cluster.yml
 
+ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/kubespray/weavescope.yml
+
 curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
 helm init --upgrade
 
