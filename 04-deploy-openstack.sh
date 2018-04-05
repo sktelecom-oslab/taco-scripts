@@ -5,6 +5,15 @@ set -ex
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
+FSID=$(uuidgen)
+
+. /etc/os-release
+if [ "x${ID}" == "xubuntu" ] && \
+   [ "$(uname -r | awk -F "." '{ print $2 }')" -lt "5" ]; then
+  CRUSH_TUNABLES=hammer
+else
+  CRUSH_TUNABLES=null
+fi
 
 OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
 if [ $OS_DISTRO == Red ]; then
@@ -25,6 +34,8 @@ cd ~/apps
 git clone https://github.com/sktelecom-oslab/armada-manifests.git
 
 armada apply ~/apps/armada-manifests/taco-aio-manifest.yaml \
-	--set chart:ceph:values.network.public=$CIDR \
-	--set chart:ceph:values.network.cluster=$CIDR \
-	--set chart:neutron:values.network.interface.tunnel=$EXNIC
+    --set chart:ceph:values.conf.ceph.global.fsid=$FSID \
+    --set chart:ceph:values.conf.pool.crush.tunables=$CRUSH_TUNABLES \
+    --set chart:ceph:values.network.public=$CIDR \
+    --set chart:ceph:values.network.cluster=$CIDR \
+    --set chart:neutron:values.network.interface.tunnel=$EXNIC
