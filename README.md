@@ -5,9 +5,9 @@
 This set of scripts let anyone install TACO AIO (All-In-One) on a single machine.
 
 * Kubernetes v1.9.2
-* Helm Latest Version
+* Helm v2.8.2
 * OpenStack Ocata release
-* Ceph Jewel Version 
+* Ceph Luminous Version 
 * Weave Scope
 * Prometheus 
 * Grafana
@@ -37,11 +37,11 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
 
 ### Before install TACO AIO, initialize environment and install all related packages using:
 
-    $ ./01-init-env.sh
+    $ ./010-init-env.sh
 
 ### Deploy kubernetes cluster at your single machine:
 
-    $ ./02-install-k8s.sh
+    $ ./020-install-k8s.sh
 
 This step contains all about deploying kubernetes using kubespray
 * download kubespray and setting TACO's configurations
@@ -51,17 +51,17 @@ This step contains all about deploying kubernetes using kubespray
 
 ### Install [Armada] client to deploy OpenStack on Kubernetes:
 
-    $ ./03-init-armada.sh
+    $ ./030-install-armada.sh
 
 > Armada is a tool for managing multiple helm charts with dependencies by centralizing all configurations in a single Armada yaml and providing lifecycle hooks for all helm releases.
 
 ### Deploy OpenStack:
 
-    $ ./04-deploy-openstack.sh
+    $ ./040-deploy-openstack.sh
 
 ### Initialize OpenStack and Launch an instance (Virtual Machine)
 
-    $ ./05-init-openstack.sh
+    $ ./050-create-os-resources.sh
 
 First, populate environment variables with the location of the Identity service and the admin project and user credentials. This script also creates all the necessary resources to launch an instances and access it. 
 
@@ -73,6 +73,17 @@ First, populate environment variables with the location of the Identity service 
 * Create virtual machine
 * Add public ip to vm
 
+### Delete All Openstack Resources
+
+    $ ./097-remove-os-resources.sh
+
+### Clean Up Openstack Services with Ceph
+
+    $ ./098-cleanup-openstack.sh
+
+### Clean Up Openstack Services, Kubernetes Services and Armada
+
+    $ ./099-cleanup-all.sh
 
 ----
 ## Appendix 
