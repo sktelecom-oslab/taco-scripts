@@ -46,7 +46,9 @@ ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/ku
 
 ansible-playbook -u root -b -i ~/apps/kubespray/inventory/taco-aio.cfg ~/apps/kubespray/weavescope.yml
 
-curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | bash
+curl https://raw.githubusercontent.com/kubernetes/helm/master/scripts/get | cat > /tmp/helm_script.sh \
+&& chmod 755 /tmp/helm_script.sh && /tmp/helm_script.sh --version v2.8.2
+
 helm init --upgrade
 
 kubectl label nodes openstack-control-plane=enabled --all --namespace=openstack --overwrite
@@ -72,3 +74,27 @@ nameserver 8.8.8.8
 nameserver 8.8.4.4
 search openstack.svc.cluster.local svc.cluster.local cluster.local
 options ndots:5""" > /etc/resolv.conf
+
+set -e
+
+# From Kolla-Kubernetes, orginal authors Kevin Fox & Serguei Bezverkhi
+# Default wait timeout is 600 seconds
+end=$(expr $(date +%s) + 600)
+while true; do
+    kubectl get pods --namespace=kube-system -o json | jq -r \
+        '.items[].status.phase' | grep Pending > /dev/null && \
+        PENDING=True || PENDING=False
+    query='.items[]|select(.status.phase=="Running")'
+    query="$query|.status.containerStatuses[].ready"
+    kubectl get pods --namespace=kube-system -o json | jq -r "$query" | \
+        grep false > /dev/null && READY="False" || READY="True"
+    kubectl get jobs -o json --namespace=kube-system | jq -r \
+        '.items[] | .spec.completions == .status.succeeded' | \
+        grep false > /dev/null && JOBR="False" || JOBR="True"
+    [ $PENDING == "False" -a $READY == "True" -a $JOBR == "True" ] && \
+        break || true
+    sleep 5
+    now=$(date +%s)
+    [ $now -gt $end ] && echo containers failed to start. && \
+        kubectl get pods --namespace kube-system -o wide && exit -1
+done
