@@ -43,7 +43,7 @@ elif [ $OS_DISTRO == Ubuntu ]; then
 else
     echo "This Linux Distribution is NOT supported"
 fi
-pip install --upgrade pip
+pip install --upgrade pip==9.0.3
 pip install 'pyOpenSSL==16.2.0'
 pip install 'python-openstackclient'
 
