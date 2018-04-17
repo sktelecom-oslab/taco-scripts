@@ -22,7 +22,7 @@ elif [ $OS_DISTRO == CentOS ]; then
     pip3.6 install .
 elif [ $OS_DISTRO == Ubuntu ]; then
     apt-get install -y python3-pip
-    pip3 install --upgrade pip
+    pip3 install --upgrade pip==9.0.3
     pip3 install .
 else
     echo "This Linux Distribution is NOT supported"
