@@ -12,7 +12,7 @@ if [ "x${ID}" == "xubuntu" ] && \
    [ "$(uname -r | awk -F "." '{ print $2 }')" -lt "5" ]; then
   CRUSH_TUNABLES=hammer
 else
-  CRUSH_TUNABLES=null
+  CRUSH_TUNABLES=default
 fi
 
 OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
