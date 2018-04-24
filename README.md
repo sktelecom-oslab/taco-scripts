@@ -9,8 +9,6 @@ This set of scripts let anyone install TACO AIO (All-In-One) on a single machine
 * OpenStack Ocata release
 * Ceph Luminous Version 
 * Weave Scope
-* Prometheus 
-* Grafana
 * Armada
 
 Minimum Hardware (VM) Requirements 
