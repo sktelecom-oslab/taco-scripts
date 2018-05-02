@@ -1,16 +1,24 @@
 #!/bin/bash
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
+isge () { lestr=$(echo $(printf "$1\n$2" | sort -V) | awk '{print $1}'); if [[ $1 == $2 ]]; then return 0; elif [[ $1 == $lestr ]]; then return 1; else return 0; fi; }
 
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
 EXNIC=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $5}')
 FSID=$(uuidgen)
 
-. /etc/os-release
-if [ "x${ID}" == "xubuntu" ] && \
-   [ "$(uname -r | awk -F "." '{ print $2 }')" -lt "5" ]; then
+KVER=$(uname -r | egrep '^[0-9]*\.[0-9]*' -o | head -n 1)
+if isge $KVER 4.5; then
+  CRUSH_TUNABLES=jewel
+elif isge $KVER 4.1; then
   CRUSH_TUNABLES=hammer
+elif isge $KVER 3.15; then
+  CRUSH_TUNABLES=firefly
+elif isge $KVER 3.9; then
+  CRUSH_TUNABLES=bobtail
+elif isge $KVER 3.6; then
+  CRUSH_TUNABLES=argonaut
 else
   CRUSH_TUNABLES=default
 fi
