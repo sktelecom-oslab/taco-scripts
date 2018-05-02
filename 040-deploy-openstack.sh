@@ -1,7 +1,17 @@
 #!/bin/bash
 (( EUID )) && echo You need to be root. && exit 1
 set -ex
-isge () { lestr=$(echo $(printf "$1\n$2" | sort -V) | awk '{print $1}'); if [[ $1 == $2 ]]; then return 0; elif [[ $1 == $lestr ]]; then return 1; else return 0; fi; }
+# compare kernel version using float and string; return 0 when greather or equal
+isge () {
+  lestr=$(echo $(printf "$1\n$2" | sort -V) | awk '{print $1}')
+  if [[ $1 == $2 ]]; then
+    return 0
+  elif [[ $1 == $lestr ]]; then
+    return 1
+  else
+    return 0
+  fi
+}
 
 EXIP=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $7}')
 EXGW=$(ip route get 8.8.8.8 | awk '/8.8.8.8/ {print $3}')
