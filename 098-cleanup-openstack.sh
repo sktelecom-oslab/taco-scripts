@@ -17,5 +17,6 @@ for NS in ceph openstack ; do
         sleep 1
     done
 done
+kubectl delete pv --all
 
 rm -rf /var/lib/openstack-helm /var/lib/neutron /var/lib/nova /var/lib/libvirt /var/lib/openvswitch /run/openvswitch* /run/libvirt*

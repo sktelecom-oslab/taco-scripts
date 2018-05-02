@@ -17,6 +17,7 @@ for NS in ceph openstack ; do
         sleep 1
     done
 done
+kubectl delete pv --all
 
 OS_DISTRO=$(cat /etc/os-release | grep "PRETTY_NAME" | sed 's/PRETTY_NAME=//g' | sed 's/["]//g' | awk '{print $1}')
 if [ $OS_DISTRO == Red ]; then
