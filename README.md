@@ -64,6 +64,7 @@ This step contains all about deploying kubernetes using kubespray
 Logging dashboard(KIBANA)
 * localhost:30001
 * taco / password
+
 Monitoring dashboard(Prometheus)
 * localhost:30008
 * admin / password
