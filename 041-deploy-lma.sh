@@ -50,7 +50,5 @@ fi
 
 cd ~/apps
 git clone https://github.com/sktelecom-oslab/armada-manifests.git
-cd armada-manifests
-git checkout -b lma origin/lma
 
 armada apply ~/apps/armada-manifests/taco-lma-manifest.yaml 
