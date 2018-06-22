@@ -61,14 +61,12 @@ This step contains all about deploying kubernetes using kubespray
 
     $ ./041-deploy-lma.sh
 
-Access info
-
-* kibana (Logging dashboard) 
-** localhost:30001
-** taco / password
-* prometheus (Monitoring dashboard)
-** localhost:30008
-** admin / password
+Logging dashboard(KIBANA)
+* localhost:30001
+* taco / password
+Monitoring dashboard(Prometheus)
+* localhost:30008
+* admin / password
 
 ### Initialize OpenStack and Launch an instance (Virtual Machine)
 
