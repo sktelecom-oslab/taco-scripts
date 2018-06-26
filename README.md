@@ -67,7 +67,7 @@ Logging dashboard(KIBANA)
 
 Monitoring dashboard(Prometheus)
 * localhost:30008
-* admin / password
+* admin / admin
 
 ### Initialize OpenStack and Launch an instance (Virtual Machine)
 
