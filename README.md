@@ -28,6 +28,7 @@ TACO is OpenStack solution developed by SK Telecom, fully leveraging [OpenStack-
 
 ### Download TACO Installation Scripts
 
+	$ sudo -i
     $ git clone https://github.com/sktelecom-oslab/taco-scripts.git
     $ cd taco-scripts
     $ git checkout openstack-korea-handson
