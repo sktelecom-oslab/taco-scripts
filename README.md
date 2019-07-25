@@ -1,4 +1,8 @@
-<img src="https://github.com/sktelecom-oslab/docs/blob/master/images/taco-logo.png" width="300">
+## This repository is deprecated. We moved everything to the following repo
+
+https://github.com/openinfradev
+
+---
 
 # TACO Installation Scripts
 
